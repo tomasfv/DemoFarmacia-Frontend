@@ -1,0 +1,73 @@
+body{
+  background-color: rgb(241, 241, 241);
+  margin: 0;
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif; */
+    font-family: 'Raleway', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+  --first-color: #53b14a;
+  --second-color: #bec4df;
+  --third-color: #e7e9f1;
+  --bkg-color: #2d2718;
+  
+  --first-hover: #4d9b46;
+  --second-hover: #9096ac;
+  --third-hover: #d8dae4;
+}
+
+button.first-button{
+  background-color: var(--first-color);
+  border-color: var(--first-color);
+  color: white;
+}
+
+button.first-button:hover{
+  background-color: var(--first-hover);
+  border-color: var(--first-hover);
+  color: white;
+}
+
+button.second-button{
+  background-color: black;
+  border-color: black;
+  color: white;
+}
+
+button.second-button:hover{
+  background-color: black;
+  border-color: black;
+  color: white;
+}
+
+button.third-button{
+  background-color: var(--third-color);
+  border-color: var(--third-color);
+  color: black;
+}
+
+button.third-button:hover{
+  background-color: var(--third-hover);
+  border-color: var(--third-hover);
+  color: black;
+}
+
+.os-badge{
+  background-color: var(--third-color) !important;
+  border-color: var(--third-hover) !important;
+  color: black !important;
+}
+
+.close-badge{
+  border: none;
+  background: none;
+  color: rgb(243, 84, 84);
+}
+
+.points{
+  color: var(--first-color) !important;
+}
