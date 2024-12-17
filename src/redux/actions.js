@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export function getClientes(){
   return async function(dispatch){
-    var json = await axios.get("http://localhost:3001/clientes", {});
+    var json = await axios.get("/clientes", {});
     return dispatch({
       type: 'GET_CLIENTES',
       payload: json.data
@@ -14,7 +14,7 @@ export function getClientes(){
 export function getClienteById(id){
   return async function(dispatch){
     try{
-      var json = await axios.get('http://localhost:3001/clientes/' + id);
+      var json = await axios.get('/clientes/' + id);
       return dispatch ({
         type: "GET_CLIENTE_BY_ID",
         payload: json.data
@@ -28,7 +28,7 @@ export function getClienteById(id){
 export function getNombreCliente(nombre){
   return async function(dispatch){
     try{
-      var json = await axios.get('http://localhost:3001/clientes?nombre=' + nombre);
+      var json = await axios.get('/clientes?nombre=' + nombre);
       if(json.data.length > 0){
         return dispatch ({
           type: "GET_NOMBRE_CLIENTE_OK",
@@ -50,7 +50,7 @@ export function getNombreCliente(nombre){
 
 export function postCliente(payload){
   return async function(dispatch){
-    const response = await axios.post("http://localhost:3001/cliente", payload);
+    const response = await axios.post("/cliente", payload);
     console.log(response);
     return response;
   }
@@ -58,7 +58,7 @@ export function postCliente(payload){
 
 export function editCliente(payload, id){
   return async function(dispatch){
-    const response = await axios.put(`http://localhost:3001/cliente/${id}`, payload);
+    const response = await axios.put(`/cliente/${id}`, payload);
     console.log(response);
     return response;
   }
@@ -67,7 +67,7 @@ export function editCliente(payload, id){
 export function deleteCliente(id){
   return async function(dispatch){
     try{
-      await axios.delete("http://localhost:3001/cliente/" + id);
+      await axios.delete("/cliente/" + id);
       return dispatch({
         type: "DELETE_CLIENTE",
         payload: id
@@ -81,7 +81,7 @@ export function deleteCliente(id){
 export function getDetail(id){
   return async function(dispatch){
     try{
-      var json = await axios.get("http://localhost:3001/clientes/" + id);
+      var json = await axios.get("/clientes/" + id);
       return dispatch({
         type: "GET_DETAILS",
         payload: json.data
@@ -101,7 +101,7 @@ export function orderByName(payload){
 
 export function getObrasSociales(){
   return async function(dispatch){
-    var info = await axios.get('http://localhost:3001/obras-sociales', {});
+    var info = await axios.get('/obras-sociales', {});
     return dispatch({
       type: "GET_OBRAS_SOCIALES",
       payload: info.data
@@ -112,7 +112,7 @@ export function getObrasSociales(){
 export function getNombreObraSocial(nombre){
   return async function(dispatch){
     try{
-      var json = await axios.get('http://localhost:3001/obras-sociales?nombre=' + nombre);
+      var json = await axios.get('/obras-sociales?nombre=' + nombre);
       if(json.data.length > 0){
         return dispatch ({
           type: "GET_NOMBRE_OBRA_SOCIAL_OK",
@@ -135,7 +135,7 @@ export function getNombreObraSocial(nombre){
 export function getObraSocialById(id){
   return async function(dispatch){
     try{
-      var json = await axios.get('http://localhost:3001/obras-sociales/' + id);
+      var json = await axios.get('/obras-sociales/' + id);
       return dispatch ({
         type: "GET_OBRA_SOCIAL_BY_ID",
         payload: json.data
@@ -148,7 +148,7 @@ export function getObraSocialById(id){
 
 export function postObraSocial(payload){
   return async function(dispatch){
-    const response = await axios.post("http://localhost:3001/obrasocial", payload);
+    const response = await axios.post("/obrasocial", payload);
     console.log(response);
     return response;
   }
@@ -156,7 +156,7 @@ export function postObraSocial(payload){
 
 export function editObraSocial(payload, id){
   return async function(dispatch){
-    const response = await axios.put(`http://localhost:3001/obrasocial/${id}`, payload);
+    const response = await axios.put(`/obrasocial/${id}`, payload);
     console.log(response);
     return response;
   }
@@ -165,7 +165,7 @@ export function editObraSocial(payload, id){
 export function deleteObraSocial(id){
   return async function(dispatch){
     try{
-      await axios.delete("http://localhost:3001/obrasocial/" + id);
+      await axios.delete("/obrasocial/" + id);
       return dispatch({
         type: "DELETE_OBRA_SOCIAL",
         payload: id
