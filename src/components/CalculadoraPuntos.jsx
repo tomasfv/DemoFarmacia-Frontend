@@ -198,7 +198,7 @@ export default function CalculadoraPuntos({argPuntos, sumarPuntos, canjearPuntos
                   <h5>Puntos restantes: {puntosRestantes}</h5>
                 </Label>
                 <Label sm={7}>
-                  <h5>Valor de puntos totales en dinero: {dineroTotal}</h5>
+                  <h5>Valor de puntos totales en dinero: ${dineroTotal}</h5>
                 </Label>
               </FormGroup>
             </Form>
