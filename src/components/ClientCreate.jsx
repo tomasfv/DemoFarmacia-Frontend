@@ -5,7 +5,7 @@ import { postCliente, getObrasSociales } from "../redux/actions";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, FormGroup, Label, Col, Input, Button, Container, 
           Dropdown, DropdownToggle, DropdownMenu, DropdownItem, 
-          Alert, Badge, CloseButton, Card} from 'reactstrap';
+          Alert, Badge, Card} from 'reactstrap';
 
 function validate(input){
   let errors = {};
@@ -64,7 +64,8 @@ export default function ClientCreate(){
         obraSocial: [...input.obraSocial, e.target.value]
       });
       setSelectedObraSocial("");
-    }  
+    }
+    console.log(selectedObraSocial);  
   };
 
   function handleDelete(el){

@@ -5,7 +5,7 @@ import { getObrasSociales, editCliente, getClienteById } from "../redux/actions"
 import CalculadoraPuntos from "./CalculadoraPuntos";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, FormGroup, Label, Col, Input, Button, Container, 
-          Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Card, Badge, CloseButton } from 'reactstrap';
+          Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Card, Badge } from 'reactstrap';
 
 
 export default function ClientEdit(){
@@ -66,6 +66,7 @@ const handleSelectChange = (e) => {
     });
     setSelectedObraSocial("");
   }
+  console.log(selectedObraSocial);
 };
 
 const handleSubmit = (e) => {
