@@ -77,7 +77,7 @@ export default function CalculadoraPuntos({argPuntos, sumarPuntos, canjearPuntos
     <Container>
     <div>
       <div>
-        <Button className="w-50 first-button" onClick={(e) => handleOpenCalculator(e = true)}>sumar puntos</Button>{' '}
+        <Button className="first-button pe-4 ps-3" onClick={(e) => handleOpenCalculator(e = true)}>sumar puntos</Button>{' '}
       </div>
       <br/>
       {/*MODAL SUMAR PUNTOS*/}
@@ -153,7 +153,7 @@ export default function CalculadoraPuntos({argPuntos, sumarPuntos, canjearPuntos
 
 
     <div>
-        <Button className="w-50 first-button" onClick={(e) => handleCanje(e = true)}>canjear puntos</Button>
+        <Button className="first-button px-3" onClick={(e) => handleCanje(e = true)}>canjear puntos</Button>
     </div>
       <br/>
       {/*MODAL CANJEAR PUNTOS*/}

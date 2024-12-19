@@ -67,7 +67,7 @@ export default function Home(){
           <Link to='/cliente'><Button className='first-button'>crear cliente</Button></Link> {' '}
         
         <Dropdown isOpen={dropdownOpen} toggle={toggleDropdown} className="d-inline-block">
-          <DropdownToggle caret className="first-button"> ordenar </DropdownToggle>
+          <DropdownToggle caret className="first-button mt-2"> ordenar </DropdownToggle>
           <DropdownMenu>
             <DropdownItem onClick={() => handleSort({ target: { value: 'asc' } })}>
               Ascendente
@@ -83,7 +83,7 @@ export default function Home(){
           allItems={allClientes.length}
           paginado={paginado}
           />
-          <Button className='first-button' onClick={ e => {handleClick(e)} }> volver a cargar</Button>
+          <Button className='first-button mt-2' onClick={ e => {handleClick(e)} }> volver a cargar</Button>
         </Col>
         </Row>
         
@@ -93,7 +93,7 @@ export default function Home(){
           <Alert color="danger">{error}</Alert>
           :
           (
-            
+          <div className="table-responsive">
           <Table bordered className="custom-table shadow">
             <thead>
               <tr>
@@ -124,14 +124,15 @@ export default function Home(){
                   <td className="text-secondary">{el.telefono}</td>
                   <td>
                     <Link to={`/cliente/${el.id}`}>
-                      <Button size="sm" className="mb-2 w-100 third-button">editar</Button>
+                      <Button size="sm" className="mb-2 me-2 third-button">editar</Button>
                     </Link>
-                    <Button size="sm" className="w-100 second-button" onClick={() => handleDelete(el.id)}>eliminar</Button>
+                    <Button size="sm" className=" mb-2 me-2 second-button" onClick={() => handleDelete(el.id)}>eliminar</Button>
                   </td>
                 </tr>
               ))}
             </tbody>
-          </Table>)
+          </Table>
+          </div>)
         }
       </Col>
       </Container>

@@ -94,7 +94,9 @@ export default function ObrasSociales(){
             error ?             
             <Alert color="danger">{error}</Alert>
            :
-           (<Table bordered className="custom-table shadow">
+           (
+          <div className="table-responsive">
+           <Table bordered className="custom-table shadow">
             <thead>
               <tr>
                 <th className="text-secondary fw-semibold">NOMBRE</th>
@@ -106,15 +108,16 @@ export default function ObrasSociales(){
             <tr key={el.id}>
             <td className="fw-semibold">{el.nombre.toUpperCase()}</td>
             <td>
-              <Link to={`/obrasocial/${el.id}`}><Button className="w-25 me-2 third-button">editar</Button></Link>
+              <Link to={`/obrasocial/${el.id}`}><Button className="mb-2 me-2 third-button">editar</Button></Link>
               
-              <Button className="w-25 second-button" onClick={() =>{
+              <Button className="mb-2 me-2 second-button" onClick={() =>{
                 const confirmar = window.confirm("¿Está seguro que quiere eliminar esta obra social? Se borrará de esta lista y de todos los clientes que la tengan asignada.");
                 if(confirmar) handleDelete(el.id)}}>eliminar</Button>
           </td>
           </tr>))}
           </tbody>
-          </Table>)}
+          </Table>
+          </div>)}
         </div>
         </Col>
     </Container>

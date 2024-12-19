@@ -16,7 +16,7 @@ export default function Paginado({itemsPorPagina, allItems, paginado}){
         <ButtonGroup>
           { pageNumbers && pageNumbers.map(number => (
               
-                <Button className="first-button" key={number} onClick={() => paginado(number)}>{number}</Button>
+                <Button className="first-button mt-2" key={number} onClick={() => paginado(number)}>{number}</Button>
               
             ))}
         </ButtonGroup>
