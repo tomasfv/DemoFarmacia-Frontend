@@ -25,6 +25,7 @@ export default function ClientEdit(){
     numeroDeAfiliado: "",
     direccion: "",
     telefono: "",
+    notas: "",
     obraSocial: [],
   });
 
@@ -45,6 +46,7 @@ useEffect(() => {
       numeroDeAfiliado: cliente[0].numeroDeAfiliado,
       direccion: cliente[0].direccion,
       telefono: cliente[0].telefono,
+      notas: cliente[0].notas,
       obraSocial: cliente[0].obraSocials?.map(os => os.nombre) || [],
     });
   }
@@ -145,6 +147,12 @@ function canjearPuntos(puntosCanjeados){
         <Label for='telefono' sm={2}><h5>Teléfono</h5></Label>
         <Col sm={8}>
         <Input id='telefono' type="text" value={input.telefono} name='telefono' onChange={(e) => handleChange(e)}/>
+        </Col>
+      </FormGroup>
+      <FormGroup row>
+        <Label for='notas' sm={2}><h5>Notas</h5></Label>
+        <Col sm={8}>
+        <Input id='notas' type="textarea" value={input.notas} name='notas' onChange={(e) => handleChange(e)}/>
         </Col>
       </FormGroup>
       <div>

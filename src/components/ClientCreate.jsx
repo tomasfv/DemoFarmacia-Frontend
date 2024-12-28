@@ -42,6 +42,7 @@ export default function ClientCreate(){
     numeroDeAfiliado: '',
     direccion: '',
     telefono: '',
+    notas: '',
     obraSocial: []
   });
 
@@ -65,7 +66,7 @@ export default function ClientCreate(){
       });
       setSelectedObraSocial("");
     }
-    console.log(selectedObraSocial);  
+    console.log(selectedObraSocial);
   };
 
   function handleDelete(el){
@@ -88,6 +89,7 @@ export default function ClientCreate(){
       numeroDeAfiliado: '',
       direccion: '',
       telefono: '',
+      notas: '',
       obraSocial: []
     });
     navigate('/home');
@@ -146,6 +148,12 @@ export default function ClientCreate(){
           <Label for='telefono' sm={2}><h5>Teléfono</h5></Label>
           <Col sm={8}>
           <Input id='telefono' type="text" value={input.telefono} name='telefono' onChange={(e) => handleChange(e)}/>
+          </Col>
+        </FormGroup>
+        <FormGroup row>
+          <Label for='notas' sm={2}><h5>Notas</h5></Label>
+          <Col sm={8}>
+          <Input id='notas' type="textarea" value={input.notas} name='notas' onChange={(e) => handleChange(e)}/>
           </Col>
         </FormGroup>
         
