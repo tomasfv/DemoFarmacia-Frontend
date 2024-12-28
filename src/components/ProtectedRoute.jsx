@@ -14,5 +14,6 @@ export default function ProtectedRoute({ children }) {
     return <Navigate to="/acceso-denegado" />;
   }
 
+
   return children;
 }

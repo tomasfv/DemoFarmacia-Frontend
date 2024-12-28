@@ -12,9 +12,8 @@ export default function LandingPage(){
   
   const allowedEmail = process.env.REACT_APP_ALLOWED_USER_EMAIL;
   const allowedName = process.env.REACT_APP_ALLOWED_USER_NAME;
-
   const usuarioPermitido = user?.email === allowedEmail && user?.name === allowedName;
-
+  
 
   return(
     <Container className="d-flex flex-column justify-content-center align-items-center vh-100 text-center">
