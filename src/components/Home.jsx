@@ -105,6 +105,7 @@ export default function Home(){
                 <th className="text-secondary fw-semibold">AFILIADO</th>
                 <th className="text-secondary fw-semibold">DIRECCION</th>
                 <th className="text-secondary fw-semibold">TELEFONO</th>
+                <th className="text-secondary fw-semibold">NOTAS</th>
                 <th className="text-secondary fw-semibold">ACCIONES</th>
               </tr>
             </thead>
@@ -122,6 +123,7 @@ export default function Home(){
                   <td className="text-secondary">{el.numeroDeAfiliado}</td>
                   <td className="text-secondary">{el.direccion}</td>
                   <td className="text-secondary">{el.telefono}</td>
+                  <td className="text-secondary">{el.notas}</td>
                   <td>
                     <Link to={`/cliente/${el.id}`}>
                       <Button size="sm" className="mb-2 me-2 third-button">editar</Button>
