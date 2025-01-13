@@ -10,7 +10,6 @@ import ObrasSociales from './components/ObrasSociales.jsx';
 import ObraSocialCreate from './components/ObraSocialCreate.jsx';
 import ObraSocialEdit from './components/ObraSocialEdit.jsx';
 import Layout from './components/Layout.jsx';
-import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import AccesoDenegado from './components/AccesoDenegado.jsx';
 
 function App() {
@@ -19,13 +18,13 @@ function App() {
     <div>
       <Routes>
         <Route path='/' element={<LandingPage/>}/>
-        <Route path='/home' element={<ProtectedRoute><Layout><Home/></Layout></ProtectedRoute>}/>
-        <Route path='/cliente' element={<ProtectedRoute><Layout><ClientCreate/></Layout></ProtectedRoute>}/>
-        <Route path='/cliente/:id' element={<ProtectedRoute><Layout><ClientEdit/></Layout></ProtectedRoute>}/>
+        <Route path='/home' element={<Layout><Home/></Layout>}/>
+        <Route path='/cliente' element={<Layout><ClientCreate/></Layout>}/>
+        <Route path='/cliente/:id' element={<Layout><ClientEdit/></Layout>}/>
         <Route path='/home/:id' element={<Detail/>}/>
-        <Route path='/obras-sociales' element={<ProtectedRoute><Layout><ObrasSociales/></Layout></ProtectedRoute>}/>
-        <Route path='/obrasocial' element={<ProtectedRoute><Layout><ObraSocialCreate/></Layout></ProtectedRoute>}/>
-        <Route path='/obrasocial/:id' element={<ProtectedRoute><Layout><ObraSocialEdit/></Layout></ProtectedRoute>}/>
+        <Route path='/obras-sociales' element={<Layout><ObrasSociales/></Layout>}/>
+        <Route path='/obrasocial' element={<Layout><ObraSocialCreate/></Layout>}/>
+        <Route path='/obrasocial/:id' element={<Layout><ObraSocialEdit/></Layout>}/>
         <Route path='/acceso-denegado' element={<AccesoDenegado/>}/>
       </Routes>
     </div>

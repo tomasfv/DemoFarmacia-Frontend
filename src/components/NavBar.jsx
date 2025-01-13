@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faCreditCard } from "@fortawesome/free-solid-svg-icons";
 import { Button, Nav, NavItem, Container, Card, Row, Col } from "reactstrap";
-import LogoutButton from "./LogoutButton.jsx";
 import "./NavBar.css"; // Importamos el archivo de estilos
 
 export default function NavBar() {
@@ -26,7 +25,7 @@ export default function NavBar() {
             <Nav card pills>
           <Col>
               <NavItem className="m-2 text-center">
-                <h5>Farmacia Alto Palermo</h5>
+                <h5>Demo Farmacia</h5>
               </NavItem>
           </Col>
           <Col className="d-flex m-1">
@@ -44,11 +43,6 @@ export default function NavBar() {
                   </Button>
                 </Link>
               </NavItem>
-              <NavItem>
-                <Link to='/landing'>
-                  <LogoutButton/>
-                </Link>
-              </NavItem>
           </Col>
           <Col>
           </Col>
@@ -63,7 +57,7 @@ export default function NavBar() {
     
         <Nav vertical card pills>
           <NavItem className="mb-4 text-center">
-            <h5>Farmacia Alto Palermo</h5>
+            <h5>Demo Farmacia</h5>
           </NavItem>
           <NavItem className="mb-4">
             <Link to='/home'><Button className="w-100  first-button"><FontAwesomeIcon icon={faUser}/> clientes</Button></Link>
@@ -71,10 +65,6 @@ export default function NavBar() {
     
           <NavItem>
             <Link to='/obras-sociales'><Button color="success" className="w-100  first-button"><FontAwesomeIcon icon={faCreditCard}/> obras sociales</Button></Link>
-          </NavItem>
-
-          <NavItem>
-            <Link to='/'><LogoutButton/></Link>
           </NavItem>
     
         </Nav>
