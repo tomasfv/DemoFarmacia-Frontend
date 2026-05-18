@@ -1,5 +1,5 @@
 [build]
-  command = "npm run build"
+  command = "chmod +x node_modules/.bin/react-scripts && npm run build"
   publish = "build"
 
 [context.production.environment]
