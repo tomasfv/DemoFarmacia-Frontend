@@ -1,25 +1,30 @@
-
-
 .custom-table {
   border: 1px solid #dee2e6;
-  border-radius: 8px; /* Asegúrate de que este valor esté presente */
-  border-collapse: collapse; /* Mantén 'collapse' para los bordes de celdas */
+  border-radius: 8px;
+  /* Asegúrate de que este valor esté presente */
+  border-collapse: collapse;
+  /* Mantén 'collapse' para los bordes de celdas */
   width: 100%;
-  overflow: hidden; /* Asegura que las esquinas redondeadas no se vean cortadas */
+  overflow: hidden;
+  /* Asegura que las esquinas redondeadas no se vean cortadas */
 }
 
 .custom-table th,
 .custom-table td {
-  border: none; /* Elimina los bordes internos de las celdas */
-  padding: 8px; /* Añade espacio dentro de las celdas */
+  border: none;
+  /* Elimina los bordes internos de las celdas */
+  padding: 8px;
+  /* Añade espacio dentro de las celdas */
 }
 
 .custom-table tbody tr {
-  border-bottom: 1px solid #dee2e6; /* Borde inferior para cada fila */
+  border-bottom: 1px solid #dee2e6;
+  /* Borde inferior para cada fila */
 }
 
 .custom-table tbody tr:last-child {
-  border-bottom: none; /* Elimina el borde de la última fila */
+  border-bottom: none;
+  /* Elimina el borde de la última fila */
 }
 
 @media (max-width: 1100px) {
@@ -29,7 +34,8 @@
 
   .custom-table th,
   .custom-table td {
-    white-space: nowrap; /* Evita que el contenido de las celdas se desborde */
+    white-space: nowrap;
+    /* Evita que el contenido de las celdas se desborde */
   }
 
 
@@ -42,3 +48,7 @@
   }
 }
 
+.action-btn {
+  width: 80px;
+  text-align: center;
+}
