@@ -1,41 +1,38 @@
-import React from "react";
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getObrasSociales, orderObrasSocialesByName, deleteObraSocial } from "../redux/actions";
+import { getObrasSociales, orderObrasSocialesByName, deleteObraSocial, getNombreObraSocial } from "../redux/slices/obrasSocialesSlice";
 import { Link } from 'react-router-dom';
 import Paginado from "./Paginado";
 import './ObrasSociales.css';
 import SearchBar from "./SearchBar";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Table, Button, Container, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Alert, Row, Col } from 'reactstrap';
-
-
+import { Table, Button, Container, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Alert, Row, Col, Spinner } from 'reactstrap';
 
 export default function ObrasSociales() {
   const dispatch = useDispatch();
-  const allObrasSociales = useSelector((state) => state.obrasSociales);
-  const error = useSelector((state) => state.error);
+  const { obrasSocialesList, isLoading, error } = useSelector((state) => state.obrasSociales);
+
   const [orden, setOrden] = useState('');
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
-  //PAGINADO
+
+  // PAGINADO
   const [currentPage, setCurrentPage] = useState(1);
-  const [obrasSocialesPorPagina, /*setObrasSocialesPorPagina*/] = useState(6);
+  const [obrasSocialesPorPagina] = useState(6);
   const indexUltimaObraSocial = currentPage * obrasSocialesPorPagina;
   const indexPrimeraObraSocial = indexUltimaObraSocial - obrasSocialesPorPagina;
-  const currentObrasSociales = allObrasSociales.slice(indexPrimeraObraSocial, indexUltimaObraSocial);
+  const currentObrasSociales = obrasSocialesList.slice(indexPrimeraObraSocial, indexUltimaObraSocial);
 
   const paginado = (pageNumber) => {
     setCurrentPage(pageNumber);
     localStorage.setItem('currentPage', pageNumber);
   };
-  //FINAL PAGINADO
 
   useEffect(() => {
     dispatch(getObrasSociales());
     const savedPage = localStorage.getItem('currentPage');
     if (savedPage) {
-      setCurrentPage(parseInt(savedPage, 10))
+      setCurrentPage(parseInt(savedPage, 10));
     }
   }, [dispatch]);
 
@@ -44,35 +41,38 @@ export default function ObrasSociales() {
     dispatch(getObrasSociales());
     setCurrentPage(1);
     localStorage.removeItem('currentPage');
-  };
+  }
 
-  function handleSort(e) {
-    dispatch(orderObrasSocialesByName(e.target.value));
+  function handleSort(value) {
+    dispatch(orderObrasSocialesByName(value));
     setCurrentPage(1);
-    setOrden(`Ordenado ${e.target.value}`);
-    console.log(orden);
+    setOrden(`Ordenado ${value}`);
   }
 
   function handleDelete(id) {
     dispatch(deleteObraSocial(id));
   }
 
+  function handleSearch(nombre) {
+    dispatch(getNombreObraSocial(nombre));
+    setCurrentPage(1);
+  }
 
   return (
     <Container fluid className="px-4">
       <Col sm={10}>
         <h1>OBRAS SOCIALES</h1>
-        <SearchBar inHome={false} inObrasSociales={true} />
+        <SearchBar onSearch={handleSearch} placeholder="Buscar obras sociales..." />
         <Row className="mb-4 mt-4">
           <Col sm={12} className="d-flex justify-content-between align-items-center flex-wrap">
-            <Link to='/obrasocial'><Button className="first-button">crear obra social</Button></Link>
+            <Link to='/obras-sociales/nueva'><Button className="first-button">crear obra social</Button></Link>
             <Dropdown isOpen={dropdownOpen} toggle={toggleDropdown} className="d-inline-block">
               <DropdownToggle caret className="first-button"> ordenar </DropdownToggle>
               <DropdownMenu>
-                <DropdownItem onClick={() => handleSort({ target: { value: 'asc' } })}>
+                <DropdownItem onClick={() => handleSort('asc')}>
                   Ascendente
                 </DropdownItem>
-                <DropdownItem onClick={() => handleSort({ target: { value: 'desc' } })}>
+                <DropdownItem onClick={() => handleSort('desc')}>
                   Descendente
                 </DropdownItem>
               </DropdownMenu>
@@ -80,47 +80,50 @@ export default function ObrasSociales() {
 
             <Paginado
               itemsPorPagina={obrasSocialesPorPagina}
-              allItems={allObrasSociales.length}
+              allItems={obrasSocialesList.length}
               paginado={paginado}
             />
 
-            <Button className="first-button" onClick={e => { handleClick(e) }}>
+            <Button className="first-button" onClick={handleClick}>
               volver a cargar
             </Button>
           </Col>
         </Row>
-        <div>
-          {
-            error ?
-              <Alert color="danger">{error}</Alert>
-              :
-              (
-                <div className="table-responsive">
-                  <Table bordered className="custom-table shadow">
-                    <thead>
-                      <tr>
-                        <th className="text-secondary fw-semibold">NOMBRE</th>
-                        <th className="text-secondary fw-semibold">ACCIONES</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {currentObrasSociales?.map((el) => (
-                        <tr key={el.id}>
-                          <td className="fw-semibold">{el.nombre.toUpperCase()}</td>
-                          <td>
-                            <Link to={`/obrasocial/${el.id}`}><Button className="mb-2 me-2 third-button">editar</Button></Link>
 
-                            <Button className="mb-2 me-2 second-button" onClick={() => {
-                              const confirmar = window.confirm("¿Está seguro que quiere eliminar esta obra social? Se borrará de esta lista y de todos los clientes que la tengan asignada.");
-                              if (confirmar) handleDelete(el.id)
-                            }}>eliminar</Button>
-                          </td>
-                        </tr>))}
-                    </tbody>
-                  </Table>
-                </div>)}
-        </div>
+        {isLoading ? (
+          <div className="text-center my-5">
+            <Spinner color="success" />
+            <p className="mt-2">Cargando obras sociales...</p>
+          </div>
+        ) : error ? (
+          <Alert color="danger">{error}</Alert>
+        ) : (
+          <div className="table-responsive">
+            <Table bordered className="custom-table shadow">
+              <thead>
+                <tr>
+                  <th className="text-secondary fw-semibold">NOMBRE</th>
+                  <th className="text-secondary fw-semibold">ACCIONES</th>
+                </tr>
+              </thead>
+              <tbody>
+                {currentObrasSociales?.map((el) => (
+                  <tr key={el.id}>
+                    <td className="fw-semibold">{el.nombre.toUpperCase()}</td>
+                    <td>
+                      <Link to={`/obras-sociales/editar/${el.id}`}><Button className="mb-2 me-2 third-button">editar</Button></Link>
+
+                      <Button className="mb-2 me-2 second-button" onClick={() => {
+                        const confirmar = window.confirm("¿Está seguro que quiere eliminar esta obra social? Se borrará de esta lista y de todos los clientes que la tengan asignada.");
+                        if (confirmar) handleDelete(el.id);
+                      }}>eliminar</Button>
+                    </td>
+                  </tr>))}
+              </tbody>
+            </Table>
+          </div>
+        )}
       </Col>
     </Container>
-  )
+  );
 }

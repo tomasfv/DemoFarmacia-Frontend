@@ -1,48 +1,41 @@
-import React from "react";
-import { useState} from 'react';
-import { useDispatch } from "react-redux";
-import { getNombreCliente, getNombreObraSocial } from "../redux/actions";
+import React, { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Input, InputGroup } from 'reactstrap';
 
-export default function SearchBar({inHome, inObrasSociales}){
-  const dispatch = useDispatch();
+export default function SearchBar({ onSearch, placeholder }) {
   const [nombre, setNombre] = useState('');
 
-
-  function handleInputChange(e){
-    e.preventDefault();
+  function handleInputChange(e) {
     setNombre(e.target.value);
-    console.log(nombre);
-  };
-
-  function handleDelete(){
-    setNombre('')
   }
 
-  function handleSubmit(e){
+  function handleDelete() {
+    setNombre('');
+    onSearch('');
+  }
+
+  function handleSubmit(e) {
     e.preventDefault();
-    if(inHome === true){
-      dispatch(getNombreCliente(nombre));
-    } else if(inObrasSociales === true){
-      dispatch(getNombreObraSocial(nombre));
-    }
-    
-  };
+    onSearch(nombre);
+  }
 
-  function handleOnEnter(e){
-    if(e.key === "Enter"){
-      handleSubmit(e)
+  function handleOnEnter(e) {
+    if (e.key === "Enter") {
+      handleSubmit(e);
     }
   }
 
-  return(
-    
-      <InputGroup>
-        <Input type="text" placeholder="buscar..." value={nombre} onChange={handleInputChange} onKeyDown={handleOnEnter}/>
-          <Button className="second-button" type="button" onClick={handleDelete}>X</Button>
-          <Button className="first-button" type="submit" onClick={(e) => handleSubmit(e)}>Buscar</Button>
-      </InputGroup>
-    
-  )
+  return (
+    <InputGroup>
+      <Input
+        type="text"
+        placeholder={placeholder || "buscar..."}
+        value={nombre}
+        onChange={handleInputChange}
+        onKeyDown={handleOnEnter}
+      />
+      <Button className="second-button" type="button" onClick={handleDelete}>X</Button>
+      <Button className="first-button" type="submit" onClick={handleSubmit}>Buscar</Button>
+    </InputGroup>
+  );
 }

@@ -30,7 +30,7 @@ export default function NavBar() {
           </Col>
           <Col className="d-flex m-1">
               <NavItem className="me-2">
-                <Link to='/home'>
+                <Link to='/clientes'>
                   <Button className="first-button" size="sm">
                     <FontAwesomeIcon icon={faUser}/>
                   </Button>
@@ -60,7 +60,7 @@ export default function NavBar() {
             <h5>Demo Farmacia</h5>
           </NavItem>
           <NavItem className="mb-4">
-            <Link to='/home'><Button className="w-100  first-button"><FontAwesomeIcon icon={faUser}/> clientes</Button></Link>
+            <Link to='/clientes'><Button className="w-100  first-button"><FontAwesomeIcon icon={faUser}/> clientes</Button></Link>
           </NavItem>
     
           <NavItem>
