@@ -142,7 +142,13 @@ export default function Home() {
                           <Link to={`/cliente/${el.id}`}>
                             <Button size="sm" className="mb-2 me-2 third-button action-btn">editar</Button>
                           </Link>
-                          <Button size="sm" className="mb-2 me-2 second-button action-btn" onClick={() => handleDelete(el.id)}>eliminar</Button>
+                          <Button size="sm" className="mb-2 me-2 second-button action-btn"
+                            onClick={() => {
+                              const confirmar = window.confirm("¿Está seguro que quiere eliminar el cliente?");
+                              if (confirmar) handleDelete(el.id)
+                            }}>
+                            eliminar
+                          </Button>
                         </td>
                       </tr>
                     ))}
